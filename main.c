@@ -6,7 +6,7 @@
 /*   By: svanmeen <svanmeen@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 15:42:58 by svanmeen          #+#    #+#             */
-/*   Updated: 2023/02/28 13:47:36 by svanmeen         ###   ########.fr       */
+/*   Updated: 2023/03/01 14:42:04 by svanmeen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	print_list(t_parse **list)
 	{
 		while (tmp)
 		{
-			ft_printf("x :%d y:%d z:%d\n", tmp->graph_x, tmp->graph_y, tmp->z);
+			ft_printf("x :%d y:%d z:%d\n", tmp->x, tmp->y, tmp->z);
 			tmp = tmp->next;
 			i++;
 		}

@@ -6,7 +6,7 @@
 /*   By: svanmeen <svanmeen@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 13:54:13 by svanmeen          #+#    #+#             */
-/*   Updated: 2023/02/28 13:47:07 by svanmeen         ###   ########.fr       */
+/*   Updated: 2023/03/01 15:02:05 by svanmeen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,17 @@ typedef struct s_param
 	void	*ptr;
 	void	*win;
 	t_img	*img;
+	t_parse	**points;
 	int		lenght;
 	int		max_x;
 	int		max_y;
-	int		z_factor;
+	double		z_factor;
 	int		y_size;
 	int		x_size;
 	int		mid_x;
 	int		mid_y;
+	int		x_tr;
+	int		y_tr;
 }			t_param;
 
 //	Check_inputs
@@ -71,6 +74,7 @@ void	print_list(t_parse **list);
 int		run_fdf(t_parse **points, t_param *set);
 void	ft_draw(t_parse **points, t_param *set);
 void	ft_setpoints(t_parse **pts, t_param *set);
+void	get_points(t_parse	**tab, t_param *set);
 
 //	Utils
 //parse
@@ -80,6 +84,7 @@ void	img_pixel_put(t_img *img, int x, int y, int color);
 int		ft_inc(int x, int y);
 int		ft_get(int x, int y);
 int		put_pts(t_parse p1, t_parse p2, t_param *img);
+int		draw_pts(t_parse **tab, t_param *set);
 //output
 int		colors(char *str, char color);
 //memory protection

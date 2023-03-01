@@ -6,7 +6,7 @@
 /*   By: svanmeen <svanmeen@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 10:37:53 by svanmeen          #+#    #+#             */
-/*   Updated: 2023/02/28 14:00:58 by svanmeen         ###   ########.fr       */
+/*   Updated: 2023/03/01 15:21:03 by svanmeen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	draw_lines(t_parse *curr, t_param *set, t_parse *prev)
 	int	line_s;
 
 	line_s = prev->y;
-	if (curr->y == line_s)
+	if (curr && curr->y == line_s)
 		put_pts(*prev, *curr, set);
 }
 
@@ -55,7 +55,6 @@ int	draw_pts(t_parse **tab, t_param *set)
 void	ft_draw(t_parse **points, t_param *set)
 {
 	ft_setpoints(points, set);
-	//draw_pts(points, set);
-	put_pts(*(*points), *(*points)->next, set);
-	mlx_put_image_to_window(set->ptr, set->win, set->img->i_ptr, 250, 250);
+	draw_pts(points, set);
+	mlx_put_image_to_window(set->ptr, set->win, set->img->i_ptr, set->x_size / 2 - (set->mid_x) * 2, set->y_size / 2 - (set->mid_y));
 }

@@ -6,7 +6,7 @@
 /*   By: svanmeen <svanmeen@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:42:37 by svanmeen          #+#    #+#             */
-/*   Updated: 2023/02/28 14:02:17 by svanmeen         ###   ########.fr       */
+/*   Updated: 2023/03/01 11:42:33 by svanmeen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,14 @@ void	img_pixel_put(t_img *img, int x, int y, int color)
 	*(unsigned int *)put = color;
 }
 
+void	img_pixel_puts(t_img *img, int x, int y, int color)
+{
+	char	*put;
+
+	put = img->addr + (y * img->lnl + x *(img->bpp / 8));
+	*(unsigned int *)put = color;
+}
+
 int	ft_inc(int x, int y)
 {
 	if (x > y)
@@ -50,42 +58,40 @@ int	ft_get(int x, int y)
 		return (y - x);
 }
 
-int	put_pts(t_parse p1, t_parse p2, t_param *img)
+int	put_pts(t_parse p1, t_parse p2, t_param *set)
 {
 	int	diff;
 	int	dx;
 	int	dy;
-	int	y1;
-	int	y2;
 
-	y1 = p1.graph_y;//- (p1.z * img->lenght) * img->z_factor;
-	y2 = p2.graph_y;//- (p2.z * img->lenght) * img->z_factor;
+	p1.graph_y = p1.graph_y - (p1.z * set->lenght) * set->z_factor;
+	p2.graph_y = p2.graph_y - (p2.z * set->lenght) * set->z_factor;
 	diff = ft_get(p2.graph_x, p1.graph_x);
 	dx = diff;
-	dy = ft_get(y2, y1);
+	dy = ft_get(p2.graph_y, p1.graph_y);
 	if (diff > dy)
 	{
-		while (!(p2.graph_x == p1.graph_x && y2 == y1))
+		while (!(p2.graph_x == p1.graph_x && p2.graph_y == p1.graph_y))
 		{
-			img_pixel_put(img->img->i_ptr, p1.graph_x, y1, 16711935);
+			img_pixel_put(set->img, p1.graph_x, p1.graph_y, 16711935);
 			p1.graph_x += ft_inc(p2.graph_x, p1.graph_x);
 			diff = diff - dy;
 			if (diff < 0)
 			{
-				y1 += ft_inc(y2, y1);
+				p1.graph_y += ft_inc(p2.graph_y, p1.graph_y);
 				diff = diff + dx;
 			}
 		}
 	}
 	else
 	{
-		diff = ft_get(y2, y1);
+		diff = ft_get(p2.graph_y, p1.graph_y);
 		dy = diff;
 		dx = ft_get(p2.graph_x, p1.graph_x);
-		while (!(p2.graph_x == p1.graph_x && y2 == y1))
+		while (!(p2.graph_x == p1.graph_x && p2.graph_y == p1.graph_y))
 		{
-			img_pixel_put(img->img->i_ptr, p1.graph_x, y1, 16711935);
-			y1 += ft_inc(y2, y1);
+			img_pixel_puts(set->img, p1.graph_x, p1.graph_y, 16711935);
+			p1.graph_y += ft_inc(p2.graph_y, p1.graph_y);
 			diff = diff - dx;
 			if (diff < 0)
 			{
