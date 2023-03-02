@@ -6,7 +6,7 @@
 /*   By: svanmeen <svanmeen@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 11:37:10 by svanmeen          #+#    #+#             */
-/*   Updated: 2023/03/02 11:06:52 by svanmeen         ###   ########.fr       */
+/*   Updated: 2023/03/02 13:22:19 by svanmeen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ void	set_win(t_parse **tab, t_param *setup)
 		curr = curr->next;
 	while (curr->y != setup->max_y / 2)
 		curr = curr->next;
-	setup->mid_x = curr->graph_x;
-	setup->mid_y = curr->graph_y - (curr->z * (setup->z_factor * setup->lenght));
+	setup->mid_x = 0;
+	setup->mid_y = 0;
 }
 
 void	ft_setpoints(t_parse **pts, t_param *set)
@@ -78,8 +78,8 @@ void	ft_setpoints(t_parse **pts, t_param *set)
 	x = set->x_size;
 	y = set->y_size;
 
-	(*pts)->graph_x = x / 2;
-	(*pts)->graph_y = y / 2;
+	(*pts)->graph_x = x * 3 / 2;
+	(*pts)->graph_y = y * 3 / 2;
 	(*pts)->graph_x += (x / set->max_x) / 2;
 	(*pts)->graph_y += (y / set->max_y) / 2;
 	set->lenght = ((x / (set->max_y) + (y / (set->max_x)) / 2) / 3);

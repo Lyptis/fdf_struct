@@ -6,7 +6,7 @@
 /*   By: svanmeen <svanmeen@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 13:54:13 by svanmeen          #+#    #+#             */
-/*   Updated: 2023/03/01 15:02:05 by svanmeen         ###   ########.fr       */
+/*   Updated: 2023/03/02 14:56:39 by svanmeen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ typedef struct s_param
 	void	*win;
 	t_img	*img;
 	t_parse	**points;
-	int		lenght;
+	double		lenght;
 	int		max_x;
 	int		max_y;
 	double		z_factor;
