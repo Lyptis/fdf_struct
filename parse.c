@@ -6,7 +6,7 @@
 /*   By: svanmeen <svanmeen@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:26:21 by svanmeen          #+#    #+#             */
-/*   Updated: 2023/02/28 11:16:56 by svanmeen         ###   ########.fr       */
+/*   Updated: 2023/03/02 10:51:21 by svanmeen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	ft_get_tab(char *file, t_parse **tab, t_param *set)
 	fd = open(file, O_RDONLY);
 	linetmp = get_next_line(fd);
 	i = 0;
-	set->z_factor = 1;
+	set->z_factor = 0.2;
 	if (linetmp)
 	{
 		while (linetmp)

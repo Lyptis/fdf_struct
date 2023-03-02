@@ -6,7 +6,7 @@
 /*   By: svanmeen <svanmeen@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 10:37:53 by svanmeen          #+#    #+#             */
-/*   Updated: 2023/03/01 15:21:03 by svanmeen         ###   ########.fr       */
+/*   Updated: 2023/03/02 11:31:49 by svanmeen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static int	draw_lines(t_parse *curr, t_param *set, t_parse *prev)
 	line_s = prev->y;
 	if (curr && curr->y == line_s)
 		put_pts(*prev, *curr, set);
+	return (0);
 }
 
 static t_parse	*draw_cols(t_parse *curr, t_param *set, t_parse *prev)
@@ -50,6 +51,7 @@ int	draw_pts(t_parse **tab, t_param *set)
 		tmp = curr;
 		curr = curr->next;
 	}
+	return (0);
 }
 
 void	ft_draw(t_parse **points, t_param *set)

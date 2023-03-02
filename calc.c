@@ -6,7 +6,7 @@
 /*   By: svanmeen <svanmeen@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 11:37:10 by svanmeen          #+#    #+#             */
-/*   Updated: 2023/02/28 13:55:09 by svanmeen         ###   ########.fr       */
+/*   Updated: 2023/03/02 11:06:52 by svanmeen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	set_win(t_parse **tab, t_param *setup)
 	while (curr->y != setup->max_y / 2)
 		curr = curr->next;
 	setup->mid_x = curr->graph_x;
-	setup->mid_y = curr->graph_y;
+	setup->mid_y = curr->graph_y - (curr->z * (setup->z_factor * setup->lenght));
 }
 
 void	ft_setpoints(t_parse **pts, t_param *set)
