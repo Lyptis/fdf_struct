@@ -6,7 +6,7 @@
 /*   By: svanmeen <svanmeen@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:42:37 by svanmeen          #+#    #+#             */
-/*   Updated: 2023/03/01 11:42:33 by svanmeen         ###   ########.fr       */
+/*   Updated: 2023/03/08 16:22:39 by svanmeen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	put_pts(t_parse p1, t_parse p2, t_param *set)
 	{
 		while (!(p2.graph_x == p1.graph_x && p2.graph_y == p1.graph_y))
 		{
-			img_pixel_put(set->img, p1.graph_x, p1.graph_y, 16711935);
+			img_pixel_put(set->img, p1.graph_x, p1.graph_y, p2.color);
 			p1.graph_x += ft_inc(p2.graph_x, p1.graph_x);
 			diff = diff - dy;
 			if (diff < 0)
@@ -90,7 +90,7 @@ int	put_pts(t_parse p1, t_parse p2, t_param *set)
 		dx = ft_get(p2.graph_x, p1.graph_x);
 		while (!(p2.graph_x == p1.graph_x && p2.graph_y == p1.graph_y))
 		{
-			img_pixel_puts(set->img, p1.graph_x, p1.graph_y, 16711935);
+			img_pixel_puts(set->img, p1.graph_x, p1.graph_y, p2.color);
 			p1.graph_y += ft_inc(p2.graph_y, p1.graph_y);
 			diff = diff - dx;
 			if (diff < 0)

@@ -6,7 +6,7 @@
 /*   By: svanmeen <svanmeen@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 13:54:13 by svanmeen          #+#    #+#             */
-/*   Updated: 2023/03/02 14:56:39 by svanmeen         ###   ########.fr       */
+/*   Updated: 2023/03/08 16:13:17 by svanmeen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,12 @@
 
 typedef struct s_parse
 {
-	int				x;
-	int				y;
-	int				z;
-	int				graph_x;
-	int				graph_y;
+	long				x;
+	long				y;
+	long				z;
+	int					color;
+	long				graph_x;
+	long				graph_y;
 	struct s_parse	*next;
 }					t_parse;
 
@@ -85,6 +86,7 @@ int		ft_inc(int x, int y);
 int		ft_get(int x, int y);
 int		put_pts(t_parse p1, t_parse p2, t_param *img);
 int		draw_pts(t_parse **tab, t_param *set);
+int		ft_atoi_base(char *str, char *base);
 //output
 int		colors(char *str, char color);
 //memory protection
