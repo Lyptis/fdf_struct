@@ -6,7 +6,7 @@
 /*   By: svanmeen <svanmeen@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:26:21 by svanmeen          #+#    #+#             */
-/*   Updated: 2023/03/08 16:24:42 by svanmeen         ###   ########.fr       */
+/*   Updated: 2023/03/09 12:08:54 by svanmeen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,9 @@ t_parse	*ft_create(char *str, int k, int i)
 			nb->color = 16777215;
 		nb->graph_x = 0;
 		nb->graph_y = 0;
+		free(strs[0]);
+		if (strs[1])
+			free(strs[1]);
 		free(strs);
 	}
 	nb->next = 0;

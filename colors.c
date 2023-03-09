@@ -6,7 +6,7 @@
 /*   By: svanmeen <svanmeen@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 15:49:05 by svanmeen          #+#    #+#             */
-/*   Updated: 2023/03/08 16:13:37 by svanmeen         ###   ########.fr       */
+/*   Updated: 2023/03/09 12:02:37 by svanmeen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,22 +23,6 @@ int	colors(char *str, char color)
 	return (1);
 }
 
-static int	ft_isspace_n_minus(char *str, int *sign)
-{
-	int	i;
-	int	minus;
-
-	minus = 0;
-	i = 0;
-	while (!(str[i] >= 33 && str[i] <= 126) || str[i] == 43 || str[i] == 45)
-	{
-		if (str[i] == 45)
-			minus++;
-		i++;
-	}
-	*sign = minus;
-	return (i);
-}
 
 static int	ft_rank_val(char *str, int start)
 {
@@ -82,6 +66,16 @@ static int	ft_pow(int base, int rank)
 		return (base * ft_pow(base, rank - 1));
 }
 
+static int capital(char b, char n)
+{
+	if (b - 32 == n && ((b - 32) >= 65 && (b - 32) <= 90))
+		return (1);
+	else if (b + 32 == n && ((b + 32) >= 97 && (b + 32) <= 122))
+		return (1);
+	else
+		return (0);
+}
+
 int	ft_atoi_base(char *str, char *base)
 {
 	int	start;
@@ -92,10 +86,10 @@ int	ft_atoi_base(char *str, char *base)
 	i = 0;
 	sign = 0;
 	result = 0;
-	start = ft_isspace_n_minus(str, &sign);
+	start = 0;
 	while (base[i])
 	{
-		if (base[i] == str[start])
+		if (capital(base[i], str[start]) || base[i] == str[start])
 		{
 			result += i * ft_pow(ft_base(base), ft_rank_val(str, start));
 			i = 0;
