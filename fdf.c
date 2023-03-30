@@ -6,7 +6,7 @@
 /*   By: svanmeen <svanmeen@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:52:45 by svanmeen          #+#    #+#             */
-/*   Updated: 2023/03/09 12:33:23 by svanmeen         ###   ########.fr       */
+/*   Updated: 2023/03/30 14:30:49 by svanmeen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	mlx_set_image(t_param *set)
 static void	destroy_fdf(t_parse **points, t_param *set)
 {
 	mlx_destroy_image(set->ptr, set->img->i_ptr);
-	mlx_clear_window(set->ptr, set->win);
+	///mlx_clear_window(set->ptr, set->win);
 	mlx_destroy_window(set->ptr, set->win);
 	mlx_destroy_display(set->ptr);
 	free(set->ptr);
@@ -116,6 +116,12 @@ int	exit_hook(t_param *set)
 	return (0);
 }
 
+static void	mlx_initiate_hook(t_param *set)
+{
+	mlx_hook(set->win, 2, 1L << 0, keyhooks, set);
+	mlx_hook(set->win, 17, 1L << 19, exit_hook, set);
+}
+
 static void	mlx_initiate(t_param *set)
 {
 	set->x_size = 2160;
@@ -123,12 +129,6 @@ static void	mlx_initiate(t_param *set)
 	set->ptr = mlx_init();
 	set->win = mlx_new_window(set->ptr, set->x_size, set->y_size, "./fdf");
 	mlx_set_image(set);
-}
-
-static void	mlx_initiate_hook(t_param *set)
-{
-	mlx_hook(set->win, 2, 1L << 0, keyhooks, set);
-	mlx_hook(set->win, 17, 1L << 19, exit_hook, set);
 }
 
 int	run_fdf(t_parse **points, t_param *set)

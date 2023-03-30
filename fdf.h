@@ -6,7 +6,7 @@
 /*   By: svanmeen <svanmeen@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 13:54:13 by svanmeen          #+#    #+#             */
-/*   Updated: 2023/03/09 12:33:41 by svanmeen         ###   ########.fr       */
+/*   Updated: 2023/03/30 13:43:41 by svanmeen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@
 
 typedef struct s_parse
 {
-	long				x;
-	long				y;
+	int				x;
+	int				y;
 	long				z;
 	int					color;
 	long				graph_x;

@@ -6,7 +6,7 @@
 /*   By: svanmeen <svanmeen@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 15:42:58 by svanmeen          #+#    #+#             */
-/*   Updated: 2023/03/09 12:55:49 by svanmeen         ###   ########.fr       */
+/*   Updated: 2023/03/30 14:30:58 by svanmeen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	*points = 0;
 	set = malloc(sizeof(t_param));
-	ft_memset(set, 0, sizeof(t_param *));
+	//ft_memset(set, 0, sizeof(t_param *));
 	if (!set)
 		return (free_points(points));
 	if (ft_get_tab(argv[1], points, set))
