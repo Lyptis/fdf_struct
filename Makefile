@@ -6,7 +6,7 @@
 #    By: svanmeen <svanmeen@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/17 13:22:21 by svanmeen          #+#    #+#              #
-#    Updated: 2023/03/30 14:45:02 by svanmeen         ###   ########.fr        #
+#    Updated: 2023/04/17 11:40:18 by svanmeen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ NAME	= fdf
 
 GCC		= gcc
 RM		= rm -f
-FLAGS	= #-Wall -Wextra -Werror
+FLAGS	= -Wall -Wextra -Werror
 
 %.o: %.c	${HSRC}
 			${GCC} ${FLAGS} -c $< -o $@

@@ -6,7 +6,7 @@
 /*   By: svanmeen <svanmeen@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 11:37:10 by svanmeen          #+#    #+#             */
-/*   Updated: 2023/03/02 13:22:19 by svanmeen         ###   ########.fr       */
+/*   Updated: 2023/04/17 11:59:11 by svanmeen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static double	ft_rad(int angle)
 	return (ret);
 }
 
-t_parse	*ft_calc(t_parse *curr, t_parse *prev, t_param *set, int angle)
+t_parse	*ft_calc(t_parse *curr, t_parse *prev, t_info *set, int angle)
 {
 	int	lenght;
 
@@ -30,7 +30,7 @@ t_parse	*ft_calc(t_parse *curr, t_parse *prev, t_param *set, int angle)
 	return (curr);
 }
 
-void	get_points(t_parse	**tab, t_param *set)
+void	get_points(t_parse	**tab, t_info *set)
 {
 	t_parse	*first;
 	t_parse	*curr;
@@ -57,7 +57,7 @@ void	get_points(t_parse	**tab, t_param *set)
 	}
 }
 
-void	set_win(t_parse **tab, t_param *setup)
+void	set_win(t_parse **tab, t_info *setup)
 {
 	t_parse	*curr;
 
@@ -70,7 +70,7 @@ void	set_win(t_parse **tab, t_param *setup)
 	setup->mid_y = 0;
 }
 
-void	ft_setpoints(t_parse **pts, t_param *set)
+void	ft_setpoints(t_parse **pts, t_info *set)
 {
 	int	x;
 	int	y;

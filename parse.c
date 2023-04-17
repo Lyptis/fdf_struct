@@ -6,7 +6,7 @@
 /*   By: svanmeen <svanmeen@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:26:21 by svanmeen          #+#    #+#             */
-/*   Updated: 2023/03/30 12:16:09 by svanmeen         ###   ########.fr       */
+/*   Updated: 2023/04/17 11:50:18 by svanmeen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ t_parse	*ft_create(char *str, int k, int i)
 	return (nb);
 }
 
-t_parse	*ft_parse_line(char *line, t_parse **tab, int k, t_param *setup)
+t_parse	*ft_parse_line(char *line, t_parse **tab, int k, t_info *setup)
 {
 	t_parse	*tmp;
 	t_parse	*last;
@@ -85,7 +85,7 @@ t_parse	*ft_parse_line(char *line, t_parse **tab, int k, t_param *setup)
 	return (tmp);
 }
 
-int	ft_get_tab(char *file, t_parse **tab, t_param *set)
+int	ft_get_tab(char *file, t_parse **tab, t_info *set)
 {
 	int		fd;
 	int		i;

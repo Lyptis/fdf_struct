@@ -6,13 +6,13 @@
 /*   By: svanmeen <svanmeen@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:52:45 by svanmeen          #+#    #+#             */
-/*   Updated: 2023/03/30 14:30:49 by svanmeen         ###   ########.fr       */
+/*   Updated: 2023/04/17 12:47:24 by svanmeen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	mlx_set_image(t_param *set)
+void	mlx_set_image(t_param *set, t_mlx *mlx)
 {
 	int	*bpp;
 	int	*lnl;
@@ -21,114 +21,127 @@ void	mlx_set_image(t_param *set)
 	bpp = &set->img->bpp;
 	lnl = &set->img->lnl;
 	end = &set->img->endian;
-	set->img->i_ptr = mlx_new_image(set->ptr, set->x_size * 3, set->y_size * 3);
+	set->img->i_ptr = mlx_new_image(mlx->ptr, set->info.x_size * 3, set->info.y_size * 3);
 	set->img->addr = mlx_get_data_addr(set->img->i_ptr, bpp, lnl, end);
 }
 
 static void	destroy_fdf(t_parse **points, t_param *set)
 {
-	mlx_destroy_image(set->ptr, set->img->i_ptr);
-	///mlx_clear_window(set->ptr, set->win);
-	mlx_destroy_window(set->ptr, set->win);
-	mlx_destroy_display(set->ptr);
-	free(set->ptr);
+	t_mlx	*mlx;
+
+	mlx = set->mlx;
+	mlx_destroy_image(mlx->ptr, set->img->i_ptr);
+	///mlx_clear_window(mlx->ptr, mlx->win);
+	mlx_destroy_window(mlx->ptr, mlx->win);
+	mlx_destroy_display(mlx->ptr);
+	free(mlx->ptr);
 	free(set->img);
-	free(set);
+	free(mlx);
 	free_points(points);
+	free(set);
 }
 
 int	keyhooks(int keycode, t_param *set)
 {
+	t_mlx	*mlx;
+	t_info	*info;
+
+	info = &(set->info);
+	mlx = set->mlx;
 	if (keycode == 0xff1b || !keycode)
-		mlx_loop_end(set->ptr);
+		mlx_loop_end(mlx->ptr);
 	if (keycode == 0xff55)
 	{
-		set->z_factor = set->z_factor * 1.5;
-		set->y_tr = 0;
-		set->x_tr = 1;
-		mlx_clear_window(set->ptr, set->win);
-		mlx_destroy_image(set->ptr, set->img->i_ptr);
-		mlx_set_image(set);
+		info->z_factor = info->z_factor * 1.5;
+		info->y_tr = 0;
+		info->x_tr = 1;
+		mlx_clear_window(mlx->ptr, mlx->win);
+		mlx_destroy_image(mlx->ptr, set->img->i_ptr);
+		mlx_set_image(set, mlx);
 		draw_pts(set->points, set);
-		mlx_put_image_to_window(set->ptr, set->win, set->img->i_ptr, - set->x_size + set->mid_x, - set->y_size + set->mid_y);
+		mlx_put_image_to_window(mlx->ptr, mlx->win, set->img->i_ptr, - info->x_size + info->mid_x, - info->y_size + info->mid_y);
 	}
 	if (keycode == 0xff56)
 	{
-		set->z_factor = set->z_factor * 0.5;
-		mlx_clear_window(set->ptr, set->win);
-		mlx_destroy_image(set->ptr, set->img->i_ptr);
-		mlx_set_image(set);
+		info->z_factor = info->z_factor * 0.5;
+		mlx_clear_window(mlx->ptr, mlx->win);
+		mlx_destroy_image(mlx->ptr, set->img->i_ptr);
+		mlx_set_image(set, mlx);
 		draw_pts(set->points, set);
-		mlx_put_image_to_window(set->ptr, set->win, set->img->i_ptr, - set->x_size + set->mid_x, - set->y_size + set->mid_y);
+		mlx_put_image_to_window(mlx->ptr, mlx->win, set->img->i_ptr, - info->x_size + info->mid_x, - info->y_size + info->mid_y);
 	}
 	if (keycode == 0xff53)
 	{
-		mlx_clear_window(set->ptr, set->win);
-		set->mid_x = set->mid_x + 5;
-		mlx_put_image_to_window(set->ptr, set->win, set->img->i_ptr, - set->x_size + set->mid_x, - set->y_size + set->mid_y);
+		mlx_clear_window(mlx->ptr, mlx->win);
+		info->mid_x = info->mid_x + 5;
+		mlx_put_image_to_window(mlx->ptr, mlx->win, set->img->i_ptr, - info->x_size + info->mid_x, - info->y_size + info->mid_y);
 	}
 	if (keycode == 0xff54)
 	{
-		mlx_clear_window(set->ptr, set->win);
-		set->mid_y = set->mid_y + 5;
-		mlx_put_image_to_window(set->ptr, set->win, set->img->i_ptr, - set->x_size + set->mid_x, - set->y_size + set->mid_y);
+		mlx_clear_window(mlx->ptr, mlx->win);
+		info->mid_y = info->mid_y + 5;
+		mlx_put_image_to_window(mlx->ptr, mlx->win, set->img->i_ptr, - info->x_size + info->mid_x, - info->y_size + info->mid_y);
 	}
 	if (keycode == 0xff52)
 	{
-		mlx_clear_window(set->ptr, set->win);
-		set->mid_y = set->mid_y - 5;
-		mlx_put_image_to_window(set->ptr, set->win, set->img->i_ptr, - set->x_size + set->mid_x, - set->y_size + set->mid_y);
+		mlx_clear_window(mlx->ptr, mlx->win);
+		info->mid_y = info->mid_y - 5;
+		mlx_put_image_to_window(mlx->ptr, mlx->win, set->img->i_ptr, - info->x_size + info->mid_x, - info->y_size + info->mid_y);
 	}
 	if (keycode == 0xff51)
 	{
-		mlx_clear_window(set->ptr, set->win);
-		set->mid_x = set->mid_x - 5;
-		mlx_put_image_to_window(set->ptr, set->win, set->img->i_ptr, - set->x_size + set->mid_x, - set->y_size + set->mid_y);
+		mlx_clear_window(mlx->ptr, mlx->win);
+		info->mid_x = info->mid_x - 5;
+		mlx_put_image_to_window(mlx->ptr, mlx->win, set->img->i_ptr, - info->x_size + info->mid_x, - info->y_size + info->mid_y);
 	}
 	if (keycode == 0xffab)
 	{
-		set->lenght = set->lenght * 1.5;
-		set->y_tr = 1;
-		set->x_tr = 0;
-		mlx_clear_window(set->ptr, set->win);
-		mlx_destroy_image(set->ptr, set->img->i_ptr);
-		mlx_set_image(set);
-		get_points(set->points, set);
+		info->lenght = info->lenght * 1.5;
+		info->y_tr = 1;
+		info->x_tr = 0;
+		mlx_clear_window(mlx->ptr, mlx->win);
+		mlx_destroy_image(mlx->ptr, set->img->i_ptr);
+		mlx_set_image(set, mlx);
+		get_points(set->points, info);
 		draw_pts(set->points, set);
-		mlx_put_image_to_window(set->ptr, set->win, set->img->i_ptr, - set->x_size + set->mid_x, - set->y_size + set->mid_y);
+		mlx_put_image_to_window(mlx->ptr, mlx->win, set->img->i_ptr, - info->x_size + info->mid_x, - info->y_size + info->mid_y);
 	}
 	if (keycode == 0xffad)
 	{
-		set->lenght = set->lenght * 0.5;
-		mlx_clear_window(set->ptr, set->win);
-		mlx_destroy_image(set->ptr, set->img->i_ptr);
-		mlx_set_image(set);
-		get_points(set->points, set);
+		info->lenght = info->lenght * 0.5;
+		mlx_clear_window(mlx->ptr, mlx->win);
+		mlx_destroy_image(mlx->ptr, set->img->i_ptr);
+		mlx_set_image(set, mlx);
+		get_points(set->points, info);
 		draw_pts(set->points, set);
-		mlx_put_image_to_window(set->ptr, set->win, set->img->i_ptr, - set->x_size + set->mid_x, - set->y_size + set->mid_y);
+		mlx_put_image_to_window(mlx->ptr, mlx->win, set->img->i_ptr, - info->x_size + info->mid_x, - info->y_size + info->mid_y);
 	}
 	return (0);
 }
 
 int	exit_hook(t_param *set)
 {
-	mlx_loop_end(set->ptr);
+	mlx_loop_end(set->mlx->ptr);
 	return (0);
 }
 
 static void	mlx_initiate_hook(t_param *set)
 {
-	mlx_hook(set->win, 2, 1L << 0, keyhooks, set);
-	mlx_hook(set->win, 17, 1L << 19, exit_hook, set);
+	mlx_hook(set->mlx->win, 2, 1L << 0, keyhooks, set);
+	mlx_hook(set->mlx->win, 17, 1L << 19, exit_hook, set);
 }
 
-static void	mlx_initiate(t_param *set)
+static t_mlx *	mlx_initiate(t_param *set)
 {
-	set->x_size = 2160;
-	set->y_size = 1840;
-	set->ptr = mlx_init();
-	set->win = mlx_new_window(set->ptr, set->x_size, set->y_size, "./fdf");
-	mlx_set_image(set);
+	t_mlx	*mlx;
+
+	mlx = malloc(sizeof(t_mlx));
+	set->info.x_size = 800;
+	set->info.y_size = 800;
+	mlx->ptr = mlx_init();
+	mlx->win = mlx_new_window(mlx->ptr, set->info.x_size, set->info.y_size, "fdf");
+	mlx_set_image(set, mlx);
+	return (mlx);
 }
 
 int	run_fdf(t_parse **points, t_param *set)
@@ -136,11 +149,11 @@ int	run_fdf(t_parse **points, t_param *set)
 	set->img = malloc(sizeof(t_img));
 	if (!(set->img))
 		return (EXIT_FAILURE);
-	mlx_initiate(set);
+	set->mlx = mlx_initiate(set);
 	mlx_initiate_hook(set);
 	ft_draw(points, set);
 	set->points = points;
-	mlx_loop(set->ptr);
+	mlx_loop(set->mlx->ptr);
 	destroy_fdf(points, set);
 	return (0);
 }

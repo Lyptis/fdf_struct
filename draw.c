@@ -6,7 +6,7 @@
 /*   By: svanmeen <svanmeen@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 10:37:53 by svanmeen          #+#    #+#             */
-/*   Updated: 2023/03/28 13:57:25 by svanmeen         ###   ########.fr       */
+/*   Updated: 2023/04/17 12:49:34 by svanmeen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static t_parse	*draw_cols(t_parse *curr, t_param *set, t_parse *prev)
 	return (prev);
 }
 
-int	ft_overflow(t_parse **pts, t_param *set)
+int	ft_overflow(t_parse **pts, t_info *set)
 {
 	t_parse	*tmp;
 
@@ -55,18 +55,20 @@ int	draw_pts(t_parse **tab, t_param *set)
 	t_parse	*col;
 	t_parse	*curr;
 	t_parse	*tmp;
+	t_info	*info;
 
+	info = &(set->info);
 	col = *tab;
 	curr = col->next;
 	tmp = col;
 	//print_list(tab);
-	if (ft_overflow(tab, set))
+	if (ft_overflow(tab, info))
 	{
-		if (set->y_tr == 1)
-			set->lenght = set->lenght * 0.5;
-		else if (set->x_tr == 1)
-			set->z_factor = set->z_factor * 0.5;
-		get_points(tab, set); 
+		if (info->y_tr == 1)
+			info->lenght = info->lenght * 0.5;
+		else if (info->x_tr == 1)
+			info->z_factor = info->z_factor * 0.5;
+		get_points(tab, info); 
 	}
 	while (curr)
 	{
@@ -80,7 +82,10 @@ int	draw_pts(t_parse **tab, t_param *set)
 
 void	ft_draw(t_parse **points, t_param *set)
 {
-	ft_setpoints(points, set);
+	t_mlx	*mlx;
+
+	mlx = set->mlx;
+	ft_setpoints(points, &(set->info));
 	draw_pts(points, set);
-	mlx_put_image_to_window(set->ptr, set->win, set->img->i_ptr, - set->x_size, - set->y_size);
+	mlx_put_image_to_window(mlx->ptr, mlx->win, set->img->i_ptr, - set->info.x_size, - set->info.y_size);
 }

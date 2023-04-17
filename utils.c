@@ -6,7 +6,7 @@
 /*   By: svanmeen <svanmeen@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:42:37 by svanmeen          #+#    #+#             */
-/*   Updated: 2023/03/09 12:03:40 by svanmeen         ###   ########.fr       */
+/*   Updated: 2023/04/17 12:48:19 by svanmeen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,11 @@ int	put_pts(t_parse p1, t_parse p2, t_param *set)
 	int	diff;
 	int	dx;
 	int	dy;
+	t_info	info;
 
-	p1.graph_y = p1.graph_y - (p1.z * set->lenght) * set->z_factor;
-	p2.graph_y = p2.graph_y - (p2.z * set->lenght) * set->z_factor;
+	info = set->info;
+	p1.graph_y = p1.graph_y - (p1.z * info.lenght) * info.z_factor;
+	p2.graph_y = p2.graph_y - (p2.z * info.lenght) * info.z_factor;
 	diff = ft_get(p2.graph_x, p1.graph_x);
 	dx = diff;
 	dy = ft_get(p2.graph_y, p1.graph_y);
