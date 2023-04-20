@@ -6,7 +6,7 @@
 /*   By: svanmeen <svanmeen@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:42:37 by svanmeen          #+#    #+#             */
-/*   Updated: 2023/04/17 12:48:19 by svanmeen         ###   ########.fr       */
+/*   Updated: 2023/04/19 15:33:26 by svanmeen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,9 @@ int	ft_get(int x, int y)
 
 int	put_pts(t_parse p1, t_parse p2, t_param *set)
 {
-	int	diff;
-	int	dx;
-	int	dy;
+	int		diff;
+	int		dx;
+	int		dy;
 	t_info	info;
 
 	info = set->info;

@@ -6,7 +6,7 @@
 /*   By: svanmeen <svanmeen@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 11:37:10 by svanmeen          #+#    #+#             */
-/*   Updated: 2023/04/17 11:59:11 by svanmeen         ###   ########.fr       */
+/*   Updated: 2023/04/19 14:48:34 by svanmeen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ void	ft_setpoints(t_parse **pts, t_info *set)
 
 	x = set->x_size;
 	y = set->y_size;
-
 	(*pts)->graph_x = x * 3 / 2;
 	(*pts)->graph_y = y * 3 / 2;
 	(*pts)->graph_x += (x / set->max_x) / 2;

@@ -6,7 +6,7 @@
 /*   By: svanmeen <svanmeen@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 13:54:13 by svanmeen          #+#    #+#             */
-/*   Updated: 2023/04/17 12:44:19 by svanmeen         ###   ########.fr       */
+/*   Updated: 2023/04/19 15:34:58 by svanmeen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,8 @@ typedef struct s_param
 	t_mlx	*mlx;
 	t_img	*img;
 	t_parse	**points;
+	t_parse	**save;
 	t_info	info;
-	
 }			t_param;
 
 //	Check_inputs
@@ -89,6 +89,9 @@ int		run_fdf(t_parse **points, t_param *set);
 void	ft_draw(t_parse **points, t_param *set);
 void	ft_setpoints(t_parse **pts, t_info *set);
 void	get_points(t_parse	**tab, t_info *set);
+//	Hooks
+int		keyhooks(int keycode, t_param *set);
+int		exit_hook(t_param *set);
 
 //	Utils
 //parse
@@ -100,6 +103,7 @@ int		ft_get(int x, int y);
 int		put_pts(t_parse p1, t_parse p2, t_param *img);
 int		draw_pts(t_parse **tab, t_param *set);
 int		ft_atoi_base(char *str, char *base);
+void	mlx_set_image(t_param *set, t_mlx *mlx);
 //output
 int		colors(char *str, char color);
 //memory protection

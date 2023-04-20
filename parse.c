@@ -6,7 +6,7 @@
 /*   By: svanmeen <svanmeen@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:26:21 by svanmeen          #+#    #+#             */
-/*   Updated: 2023/04/17 11:50:18 by svanmeen         ###   ########.fr       */
+/*   Updated: 2023/04/19 15:41:47 by svanmeen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,32 +26,22 @@ static void	*ft_free(char **tab, int i)
 t_parse	*ft_create(char *str, int k, int i)
 {
 	t_parse	*nb;
-	char	**strs;
 
 	nb = malloc(sizeof(t_parse));
 	if (!nb)
 		return (NULL);
 	else
 	{
-		strs = ft_split(str, ',');
-		if (!strs)
-		{
-			free(nb);
-			return (NULL);
-		}
 		nb->x = i;
 		nb->y = k;
-		nb->z = ft_atoi(strs[0]);
-		if (strs[1])
-			nb->color = ft_atoi_base(strs[1] + 2, "0123456789abcdef");
+		nb->z = ft_atoi(str);
+		str = ft_strrchr(str, 'x');
+		if (str)
+			nb->color = ft_atoi_base(str + 1, "0123456789abcdef");
 		else
 			nb->color = 16777215;
 		nb->graph_x = 0;
 		nb->graph_y = 0;
-		free(strs[0]);
-		if (strs[1])
-			free(strs[1]);
-		free(strs);
 	}
 	nb->next = 0;
 	return (nb);

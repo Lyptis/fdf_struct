@@ -6,23 +6,11 @@
 /*   By: svanmeen <svanmeen@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 15:49:05 by svanmeen          #+#    #+#             */
-/*   Updated: 2023/03/09 12:02:37 by svanmeen         ###   ########.fr       */
+/*   Updated: 2023/04/19 14:50:12 by svanmeen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-int	colors(char *str, char color)
-{
-	if (color == 'r')
-	{
-		ft_printf(KRED);
-		ft_printf("%s", str);
-		ft_printf(KNORMAL);
-	}
-	return (1);
-}
-
 
 static int	ft_rank_val(char *str, int start)
 {
@@ -66,7 +54,7 @@ static int	ft_pow(int base, int rank)
 		return (base * ft_pow(base, rank - 1));
 }
 
-static int capital(char b, char n)
+static int	capital(char b, char n)
 {
 	if (b - 32 == n && ((b - 32) >= 65 && (b - 32) <= 90))
 		return (1);
