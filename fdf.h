@@ -6,7 +6,7 @@
 /*   By: svanmeen <svanmeen@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 13:54:13 by svanmeen          #+#    #+#             */
-/*   Updated: 2023/04/19 15:34:58 by svanmeen         ###   ########.fr       */
+/*   Updated: 2023/05/17 12:26:57 by svanmeen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,25 +27,23 @@
 
 typedef struct s_parse
 {
-	int				x;
-	int				y;
+	long				x;
+	long				y;
 	long				z;
 	int					color;
 	long				graph_x;
 	long				graph_y;
-	struct s_parse	*next;
-}					t_parse;
+	struct s_parse		*next;
+}						t_parse;
 
-typedef struct s_img
+typedef struct s_imag
 {
 	void	*i_ptr;
 	char	*addr;
 	int		bpp;
 	int		lnl;
 	int		endian;
-}			t_img;
-
-
+}			t_imag;
 
 typedef struct s_mlx
 {
@@ -56,13 +54,13 @@ typedef struct s_mlx
 typedef struct s_info
 {
 	double	lenght;
-	int		max_x;
-	int		max_y;
+	long	max_x;
+	long	max_y;
 	double	z_factor;
-	int		y_size;
-	int		x_size;
-	int		mid_x;
-	int		mid_y;
+	long	y_size;
+	long	x_size;
+	long	mid_x;
+	long	mid_y;
 	int		x_tr;
 	int		y_tr;
 }			t_info;
@@ -70,7 +68,7 @@ typedef struct s_info
 typedef struct s_param
 {
 	t_mlx	*mlx;
-	t_img	*img;
+	t_imag	*img;
 	t_parse	**points;
 	t_parse	**save;
 	t_info	info;
@@ -97,7 +95,11 @@ int		exit_hook(t_param *set);
 //parse
 t_parse	*get_last(t_parse **list);
 //draw
-void	img_pixel_put(t_img *img, int x, int y, int color);
+void	img_pixel_put(t_imag *img, int x, int y, int color);
+void	img_pixel_put(t_imag *img, int x, int y, int color);
+void	img_pixel_puts(t_imag *img, int x, int y, int color);
+int		ft_inc(int x, int y);
+int		ft_get(int x, int y);
 int		ft_inc(int x, int y);
 int		ft_get(int x, int y);
 int		put_pts(t_parse p1, t_parse p2, t_param *img);

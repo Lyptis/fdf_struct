@@ -6,7 +6,7 @@
 /*   By: svanmeen <svanmeen@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 10:37:53 by svanmeen          #+#    #+#             */
-/*   Updated: 2023/04/19 14:55:10 by svanmeen         ###   ########.fr       */
+/*   Updated: 2023/05/17 10:29:47 by svanmeen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	ft_draw(t_parse **points, t_param *set)
 {
 	t_mlx	*mlx;
 	t_info	info;
-	t_img	*img;
+	t_imag	*img;
 
 	mlx = set->mlx;
 	info = set->info;
