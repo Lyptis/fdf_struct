@@ -6,7 +6,7 @@
 #    By: svanmeen <svanmeen@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/17 13:22:21 by svanmeen          #+#    #+#              #
-#    Updated: 2023/05/17 12:40:51 by svanmeen         ###   ########.fr        #
+#    Updated: 2023/05/17 12:46:26 by svanmeen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,8 +25,8 @@ FLAGS	= -Wall -Wextra -Werror
 
 ${NAME}:	${OBJS} ${HSRC}
 			make -C libft
-			make -w -C minilibx-linux
-			${GCC} -o ${NAME} ${OBJS} -L libft -lft -L minilibx-linux -lmlx_Linux -L /usr/include/../lib -lXext -lX11 -lm
+			make -w -C minilibx
+			${GCC} -o ${NAME} ${OBJS} -L libft -lft -L minilibx -lmlx_Linux -L /usr/include/../lib -lXext -lX11 -lm
 
 all:		${NAME}
 
@@ -36,7 +36,7 @@ clean:
 			${RM} ${HSRC}.gch
 
 fclean:		clean
-			make clean -C minilibx-linux
+			make clean -C minilibx
 			make fclean -C libft
 			${RM} ${NAME}
 

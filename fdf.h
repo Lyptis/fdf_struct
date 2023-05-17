@@ -6,14 +6,14 @@
 /*   By: svanmeen <svanmeen@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 13:54:13 by svanmeen          #+#    #+#             */
-/*   Updated: 2023/05/17 12:40:35 by svanmeen         ###   ########.fr       */
+/*   Updated: 2023/05/17 12:46:16 by svanmeen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 # include "libft/libft.h"
-# include "minilibx-linux/mlx.h"
+# include "minilibx/mlx.h"
 # include "fcntl.h"
 # include "stdio.h"
 # include "math.h"
