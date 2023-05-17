@@ -6,7 +6,7 @@
 #    By: svanmeen <svanmeen@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/17 13:22:21 by svanmeen          #+#    #+#              #
-#    Updated: 2023/05/17 12:46:26 by svanmeen         ###   ########.fr        #
+#    Updated: 2023/05/17 12:48:56 by svanmeen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ OBJS	=	${SRCS:.c=.o}
 
 NAME	= fdf
 
-GCC		= gcc
+GCC		= cc
 RM		= rm -f
 FLAGS	= -Wall -Wextra -Werror
 
